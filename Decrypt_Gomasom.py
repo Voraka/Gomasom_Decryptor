@@ -1,5 +1,5 @@
 #----------------------------------------
-#Author	:	Voraka
+#Author		:	Voraka
 #Email		:	voraka@163.com
 #Date		:	5/2/2017
 #Details	:	https://www.bleepingcomputer.com/news/security/gomasom-crypt-ransomware-decrypted/
