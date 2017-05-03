@@ -74,7 +74,7 @@ class Gomasom():
 				"\xDA\x4A\xDC\xB5\xF5\x18\xF9\x30",
 				"\xEC\x01\x55\x65\xF0\x13\xAE\x28",
 				"\xD4\xA7\xBC\x16\x6B\xE2\xCB\x7B"
-				]
+					]
 				
 		iv = ivs[self.seed0]
 		self.IV = iv
@@ -92,7 +92,7 @@ class Gomasom():
 				"\xBF\x2B\x2A\x80\x4D\x70\x8B\xF7\xE6\x2A\xDA\x96\xF8\x7C\xD8\xDD\x85\x04\x77\xE1\x5F\x0B\x73\xCB",
 				"\x6A\xDF\x5A\x12\x4B\x0B\x8C\x07\x2E\x07\x5E\x65\x34\xF3\x9F\xD3\x41\x39\xED\x2D\x4A\xCF\xA5\x71",
 				"\xBF\x96\xAF\x5B\xBE\x59\x3D\x86\x41\xD8\xC4\x87\x17\xBD\x23\x6D\xAB\x95\x2B\x57\x9A\xF1\x2A\xCF"
-				]
+					]
 		key = keys[(self.seed0)]
 		print "\tKey: "+key.encode('hex')
 		md5 = hashlib.md5()
@@ -134,7 +134,9 @@ class Gomasom():
 			if inpath.endswith('crypt'):
 				enc_buffer = open(inpath, "rb").read()			
 				cipher = DES3.new(self.KeyMD5, DES3.MODE_CBC, self.IV)
-				dec_buffer = cipher.decrypt(pad(enc_buffer))			
+				if (len(enc_buffer)%8)!=0:
+					enc_buffer = pad(enc_buffer)
+				dec_buffer = cipher.decrypt(enc_buffer)
 				with open(inpath.replace('.crypt', ''), 'wb')as f:
 					f.write(dec_buffer)
 					f.close()
