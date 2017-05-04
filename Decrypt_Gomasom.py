@@ -140,7 +140,7 @@ class Gomasom():
 				with open(inpath.replace('.crypt', ''), 'wb')as f:
 					f.write(dec_buffer)
 					f.close()
-				print '%s decryptd! :)\n' %inpath
+				print '%s decryptd!  :)' %inpath
 				# os.remove(inpath)			
 		except:
 			pass
